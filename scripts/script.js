@@ -103,9 +103,9 @@ passwordButtons.forEach(btn => {
                 content.style.cssText = `backdrop-filter: none`
                 unlockscreen.classList.remove('shown')
                 homescreen.classList.add('shown')
+                homeButton.classList.add('onhomescreen')
             }
             else{
-                console.log("Нот гуд")
                 passCir.classList.add('wrong')
                 setTimeout(() => {
                     passCir.classList.remove('wrong')
