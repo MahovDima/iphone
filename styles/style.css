@@ -1,0 +1,388 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+li{
+    list-style: none;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    background-color: #1e1e1e;
+}
+
+.locker{
+    cursor: pointer;
+    position: absolute;
+    top: 25%;
+    left: 65.8%;
+    width: 5px;
+    height: 100px;
+    background-color: black;
+    color: white;
+}
+
+.iphone{
+    position: relative;
+    margin: auto;
+    display: flex;
+    width: 425px;
+    height: 800px;
+    border-radius: 70px;
+
+    background-color: transparent;
+    border: 10px solid black;
+    z-index: 10;
+    background-image: url(../img/IMG_7302.JPG);
+    background-size: 120%;
+    background-position-x: 50%;
+    background-position-y: 35%;
+    background-repeat: no-repeat;
+}
+
+.cameras{
+    position: absolute;
+    height: 40px;
+    width: 60%;
+    background-color: black;
+    top: 0;
+    left: 20%;
+    border-radius: 0 0 15px 15px;
+    z-index: 100;
+}
+
+.iphone-content{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 60px;
+    overflow: hidden;
+    background-color: transparent;
+    
+    
+}
+
+.iphone-content img{
+    position: absolute;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: scale(1.4);
+    transition: .3s;
+}
+
+.home{
+    position: absolute;
+    bottom: 10px;
+    left: 30%;
+    width: 40%;
+    height: 6px;
+    background-color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    z-index: 9;
+}
+
+.home.unlock{
+    animation: home-lockscreen 5s infinite;
+    text-align: center;
+}
+
+.home.unlock::after{
+    content: 'Смахните вверх, чтобы разбло- кировать';
+    color: white;
+    width: 150px;
+    position: absolute;
+    font-size: 15px;
+    bottom: 20px;
+    left: 4%;
+    animation: home-unlock 5s infinite;
+}
+
+@keyframes home-unlock{
+    0%,100%{
+        opacity: 0;
+        transform: translateY(0);
+    }
+
+    20%{
+        opacity: 1;
+        transform: translateY(-15px);
+    }
+
+    80%{
+        opacity: 1;
+    }
+    90%{
+        transform: translateY(-30px);
+    }
+}
+
+@keyframes home-lockscreen {
+    0%,100%{
+        transform: translateY(0);
+    }
+
+    20%,40%{
+        transform: translateY(-15px);
+    }
+}
+
+.lock{
+    border-radius: 55px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(5, 5, 5);
+    opacity: 0;
+    transition: .5s;
+    z-index: 10;
+    visibility: hidden;
+}
+
+.lock.locked{
+    opacity: 1;
+    visibility: visible;
+}
+
+.lock.locked ~ .lockscreen{
+    opacity: 0;
+    transition-delay: 1s;
+}
+
+.lockscreen{
+    background-color: transparent;
+    position: absolute;
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 60px;
+}
+
+.lockscreen img{
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+    transition: .5s;
+}
+
+.lockscreen img.locked{
+    transform: scale(120%);
+    transition: 2s;
+}
+
+.time{
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    top: 110px;
+    left: 23%;
+    z-index: 4;
+    color: white;
+}
+
+.time li{
+    font-size: 90px;
+}
+
+.time li:first-child::after{
+    content: ':';
+}
+
+.unlockscreen{
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+    opacity: 0;
+    transition: .2s;
+}
+
+.unlockscreen.shown{
+    visibility: visible;
+    opacity: 1;
+    transition: .4s;
+    transition-delay: .5s;
+}
+
+.unlockscreen .password-items{
+    display: flex;
+    margin: 50px auto auto 45px;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.unlockscreen button{
+    color: white;
+    cursor: pointer;
+    height: 10px;
+    background-color: transparent;
+    position: absolute;
+    border: none;
+    font-size: 17px;
+    bottom: 100px;
+    right: 60px;
+}
+
+.unlockscreen .span{
+    margin: auto auto 0 auto;
+    color: white;
+    letter-spacing: 1px;
+    font-size: 1.1em;
+}
+
+.passCir{
+    display: flex;
+    gap: 10px;
+    margin: 20px auto 0 auto;
+}
+
+.passCir.wrong{
+    animation: wrongPass .6s;
+}
+
+@keyframes wrongPass {
+    0%,100%{
+        transform: translateX(0);
+    }
+    20%,60%{
+        transform: translateX(30px);
+    }
+    40%,80%{
+        transform: translateX(-30px);
+    }
+
+}
+
+.passCir li{
+    height: 15px;
+    width: 15px;
+    border-radius: 100%;
+    border: 2px solid white;
+}
+
+.passCir li.active{
+    background-color: white;
+}
+
+.password-item{
+    cursor: pointer;
+    text-align: center;
+    color: white;
+    padding-top: 5px;
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    background-color: rgba(255, 255, 255, .2);
+    opacity: 0;
+    visibility: hidden;
+    transition: background-color .5s;
+}
+
+.unlockscreen.shown .password-item{
+    visibility: visible;
+    opacity: 1;
+    transition: .5s;
+    transition-delay: calc(75ms * var(--n));
+    transition-property: opacity;
+}
+
+.password-item:active{
+    background-color: rgba(255, 255, 255, .6);
+    transition: background-color .5s;
+}
+
+.password-item:last-child{
+    margin-left: 118px;
+}
+
+.password-item span{
+    font-size: 35px;
+    line-height: 0.9em;
+}
+
+.password-item p{
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 3px;
+}
+
+.homescreen{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    visibility: hidden;
+}
+
+.homescreen.shown{
+    visibility: visible;
+}
+
+.icons{
+    display: grid;
+    margin: 100px 20px 50px 20px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    row-gap: 30px;
+    column-gap: 20px;
+    transform: scale(400%);
+    transition: .5s;
+}
+
+.homescreen.shown .icons{
+    transform: scale(100%);
+    transition-delay: .2s;
+}
+
+.icon{
+    width: 70px;
+    height: 70px;
+    border: 2px solid black;
+    border-radius: 20px;
+    background-color: white;
+}
+
+.fastRun{
+    width: 90%;
+    position: absolute;
+    bottom: 10px;
+    left: 5%;
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, .3);
+    display: flex;
+    border-radius: 40px;
+    height: 100px;
+    transform: translateY(200%);
+    transition: .5s;
+}
+
+.fastRun .icons{
+    margin: auto;
+    grid-template-rows: none;
+    transform: scale(1);
+}
+
+.homescreen.shown .fastRun{
+    transform: translateY(0);
+    transition-delay: .2s;
+}
